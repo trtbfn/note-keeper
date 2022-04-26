@@ -107,3 +107,8 @@ def note(note_id):
 								 message=f"Database have couldn't delete note. ERROR:{e}")
 				
 	return jsonify(response)
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+	return redner_tempalte('index.html')

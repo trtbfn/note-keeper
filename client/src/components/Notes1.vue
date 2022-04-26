@@ -1,15 +1,22 @@
 <template>
-	<b-container>
-		<column :notes="notes"></column>
-		<column :notes="notes"></column>
-		<edit-screen></edit-screen>
-	</b-container>
+  <div>
+    <b-container>
+      <column :notes="notes"
+               updateNote="updateNote"
+               delteNote="updateNote"></column>
+      <column :notes="notes"
+               updateNote="updateNote"
+               delteNote="updateNote"></column>
+    </b-container>
+    <add-button @click=""></add-button>
+  </div>
+	
 </template>
 
 <script>
 import axios from 'axios';
 import Column from './Column.vue';
-import Edit from './Edit.vue';
+import {store, mutations} from '@/store.js';
 
 //Assets
 const ipAddr = 'localhost',
@@ -22,7 +29,7 @@ export default {
 			notes: []
 		}
 	},
-	methods: {
+	methods: {    
 		getNotes() {
       axios.get(apiBase + 'notes')
         .then(res => {
@@ -33,9 +40,13 @@ export default {
           console.log(error);
         });
     },
-		fillTwoCols() {
+    openUpdateScreen(note_id) {
+      this.$route.push(`/notes/${note_id}`);
+      
+    },
+    deleteNote(note_id) {
 
-		}
+    },
     // addNote(payload) {
     //   axios.post(apiBase + 'notes', payload)
     //     .then((res) => {
@@ -123,7 +134,8 @@ export default {
 	},
 	components: {
 		'column': Column,
-		'edit-screen': Edit,
+		// 'edit-screen': Edit,
+    // 'add-button': AddButton,
 	},
 	created() {
 		this.getNotes();

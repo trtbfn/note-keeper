@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import Ping from '@/components/Ping';
 import Notes from '@/components/Notes';
 import Notes1 from '@/components/Notes1';
+import Edit from '@/componentes/Edit';
 
 Vue.use(Router);
 
@@ -24,6 +25,14 @@ export default new Router({
       name: 'Notes1',
       component: Notes1,
     },
+    {
+      path: '/notes',
+      name: 'Notes1',
+      component: Notes1,
+      children: [
+        {path: '/notes/:id', Edit}
+      ]
+    }
   ],
   mode: 'history',
 });
