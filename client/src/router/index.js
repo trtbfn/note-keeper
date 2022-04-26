@@ -3,6 +3,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Ping from '@/components/Ping';
 import Notes from '@/components/Notes';
+import Notes1 from '@/components/Notes1';
 
 Vue.use(Router);
 
@@ -17,6 +18,11 @@ export default new Router({
       path: '/notes',
       name: 'Notes',
       component: Notes,
+    },
+    {
+      path: '/notes1',
+      name: 'Notes1',
+      component: Notes1,
     },
   ],
   mode: 'history',

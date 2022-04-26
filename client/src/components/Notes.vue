@@ -119,7 +119,7 @@ export default {
   },
   methods: {
     getNotes() {
-      const url = 'http://localhost:5000/api/notes'
+      const url = 'http://localhost:3000/api/notes'
       axios.get(url)
         .then(res => {
           //Each note represents as a list with parameters
@@ -130,7 +130,7 @@ export default {
         });
     },
     addNote(payload) {
-      const url = 'http://localhost:5000/api/notes';
+      const url = 'http://localhost:3000/api/notes';
       axios.post(url, payload)
         .then((res) => {
           this.message = res.data.message;
@@ -168,6 +168,7 @@ export default {
       this.editForm = {id, title, text};
     },
     onEditNote(note) {
+      // Note represents as a list
       this.editNote(note[0], note[1], note[2]);
     },
     onSubmitUpdate(e) {
@@ -180,7 +181,7 @@ export default {
       this.updateNote(payload, this.editForm.id);
     },
     updateNote(payload, noteId) {
-      const url = `http://localhost:5000/api/notes/${noteId}`;
+      const url = `http://localhost:3000/api/notes/${noteId}`;
       axios.put(url, payload)
         .then((res) => {
           this.getNotes();
@@ -199,7 +200,7 @@ export default {
       this.getNotes();
     },
     removeNote(noteId) {
-      const url = `http://localhost:5000/api/notes/${noteId}`;
+      const url = `http://localhost:3000/api/notes/${noteId}`;
       axios.delete(url)
         .then((res) => {
           this.getNotes();
@@ -212,7 +213,8 @@ export default {
         });
     },
     onDeleteNote(note) {
-      this.removeNote(note.id)
+      // Note represents as a list
+      this.removeNote(note[0])
     }
   },
   components: {

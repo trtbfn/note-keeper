@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     getMessage() {
-    const url = 'http://localhost:5000/ping';
+    const url = 'http://localhost:3000/ping';
     axios.get(url)
         .then((res) => {
           this.msg = res.data;

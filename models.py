@@ -50,9 +50,9 @@ class DBManager:
 
 
 	def delete(self, id: str):
-
+		print('trying to delte')
 		self._exec_handler(f"""
-      			DELETE FROM notes WHERE {id=}
+      	DELETE FROM notes WHERE {id=}
 			""",
 			(),
 			"Value hasn't been deleated."
@@ -106,6 +106,7 @@ class DBManager:
 
 
 	def _create_table(self):
+
 		self._exec_handler("""
 				CREATE TABLE IF NOT EXISTS notes (
 				id TEXT PRIMARY KEY NOT NULL,
@@ -119,6 +120,7 @@ class DBManager:
 
 
 	def drop_table(self):
+
 		self._exec_handler("""
 				DROP TABLE IF NOT EXISTS notes
 			""",
