@@ -8,9 +8,18 @@ class DBManager:
 	def __init__(self, name: str='notes.db') -> None:
 		self.name = name
 
-		#Create table notes 
+		#Create table and start note if there not notes
 		self._create_table()
-
+		self._create_start_note()
+		
+	def _create_start_note(self):
+		notes = self.get_all()
+		if len(notes) == 0:
+			self.write(
+				'Welcome!',
+				'You can sketch your ideas right here!'
+			)
+			
 
 	#Wrapper for some functions
 	def _exec_handler(self, query: str, 
@@ -140,3 +149,11 @@ class DBManager:
 			(title, text, id),
 			"Note haven't been udpated"
     	)
+
+# db = DBManager()
+# db.write("asdfasdkfllsdfjl", "kasjdflksdjflad;kfasdkflladfj")
+# db.write("asdfasdkfllsdfjl", "kasjdflksdjflad;kfasdkflladfj")
+# db.write("asdfasdkfllsdfjl", "kasjdflksdjflad;kfasdkflladfj")
+# db.write("asdfasdkfllsdfjl", "kasjdflksdjflad;kfasdkflladfj")
+# db.write("asdfasdkfllsdfjl", "kasjdflksdjflad;kfasdkflladfj")
+# db.write("asdfasdkfllsdfjl", "kasjdflksdjflad;kfasdkflladfj")

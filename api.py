@@ -54,7 +54,7 @@ def notes():
 	return jsonify(response)
 
 
-@app.route('/api/notes/<note_id>', methods=['PUT', 'DELETE'])
+@app.route('/api/notes/<note_id>', methods=['PUT', 'DELETE', 'GET'])
 def note(note_id):
 
 	response = None
@@ -69,27 +69,23 @@ def note(note_id):
 	if request.method == 'PUT':
 
 		post_data = request.get_json()
-		for i in range(0, len(notes)):
+	
+		try: 
+			dbm.update(
+				note_id,
+				post_data.get('title'),
+				post_data.get('text')
+			)
 
-			# 0 in tuple identifies note id
-			if notes[i][0] == note_id:
-				
-				try: 
-					dbm.update(
-						notes[i][0],
-						post_data.get('title'),
-						post_data.get('text')
-					)
-					
-					response = fill_response(status=200, 
-								 message=f'Note have been updated.')
+			response = fill_response(status=200, 
+						 message=f'Note have been updated.')
 
-				except Exception as e:
+		except Exception as e:
 
-					response = fill_response(status=500, 
-								 message=f"Database have couldn't udpate note. ERROR:{e}")
+			response = fill_response(status=500, 
+						message=f"Database have couldn't udpate note. ERROR:{e}")
 
-				break
+			
 	
 	elif request.method == 'DELETE':
 		for i in range(0, len(notes)):
@@ -105,5 +101,20 @@ def note(note_id):
 				except Exception as e:
 					response = fill_response(status=500, 
 								 message=f"Database have couldn't delete note. ERROR:{e}")
-				
+
+	elif request.method == 'GET':
+		
+		try: 
+			note = dbm.get(note_id)
+			
+			response = fill_response(body=note,
+									status=200, 
+									message=f"Ok!")
+
+		except Exception as e:
+			response = fill_response(status=500, 
+								 message=f"Database have couldn't udpate note. ERROR:{e}")
+
+
 	return jsonify(response)
+

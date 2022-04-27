@@ -1,27 +1,22 @@
 <template>
-	<button class="reject-styles">
-		<bi-circle-fill></bi-circle-fill>
-	</button>
+	<bi-plus-circle-fill 
+		class="h1"
+		@click="addNote"
+	></bi-plus-circle-fill>
 </template>
 
 
 <script>
-import { BIconExclamationCircleFill } from "bootstrap-vue";
+import { BIconPlusCircleFill } from "bootstrap-vue";
 
 export default {
   components: {
-    'bi-circle-fill': BIconExclamationCircleFill
+    'bi-plus-circle-fill': BIconPlusCircleFill
   },
+  methods: {
+		addNote() {
+			this.$router.push('/add');
+		}
+  }
 };
 </script>
-
-<style scoped>
-button:focus {
-	outline: none;
-};
-
-.reject-styles {
-	all: unset;
-	cursor: pointer;
-};	
-</style>
