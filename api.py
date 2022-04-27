@@ -1,5 +1,4 @@
 from typing import List, Tuple
-from urllib import response
 from app import app
 from flask import jsonify, request
 from models import DBManager
