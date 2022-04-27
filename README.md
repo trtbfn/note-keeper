@@ -33,3 +33,5 @@ cd client
 npm i 
 npm run dev
 ```
+Если вы всё сделали правильно, то отобразится стартовая страница:
+![start_page](https://firebasestorage.googleapis.com/v0/b/github-static-storage.appspot.com/o/start-page.png?alt=media&token=646a96d3-9ab3-495c-9de8-089c6d4bd63c)
